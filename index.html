@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>I'm Sorry, Olip ❤️</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: pink;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      text-align: center;
+    }
+
+    .instruction {
+      font-size: 22px;
+      color: hotpink;
+      margin-bottom: 10px;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% { opacity: 1; }
+      50% { opacity: 0.5; }
+      100% { opacity: 1; }
+    }
+
+    .heart {
+      font-size: 100px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .heart:hover {
+      transform: scale(1.2);
+    }
+
+    #message, #buttons {
+      margin-top: 20px;
+      font-size: 24px;
+      display: none;
+      text-align: center;
+    }
+
+    button {
+      font-size: 20px;
+      padding: 10px 20px;
+      margin: 10px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      background-color: white;
+      color: hotpink;
+      transition: all 0.3s;
+    }
+
+    button:hover {
+      background-color: hotpink;
+      color: white;
+    }
+
+    #no {
+      position: absolute;
+    }
+  </style>
+</head>
+<body>
+  <div class="instruction" id="instruction">Click on the heart, babygirl 💕</div>
+  <div class="heart" id="heart">❤️</div>
+  <div id="message">I am sorry, Olip 💖<br>Do you accept my apology?</div>
+  <div id="buttons">
+    <button id="yes">Yes 💕</button>
+    <button id="no">No 😢</button>
+  </div>
+
+  <script>
+    const heart = document.getElementById("heart");
+    const instruction = document.getElementById("instruction");
+    const message = document.getElementById("message");
+    const buttons = document.getElementById("buttons");
+    const noBtn = document.getElementById("no");
+    const yesBtn = document.getElementById("yes");
+
+    heart.addEventListener("click", () => {
+      heart.style.display = "none";
+      instruction.style.display = "none";
+      message.style.display = "block";
+      buttons.style.display = "block";
+    });
+
+    noBtn.addEventListener("mouseover", () => {
+      const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+      const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+      noBtn.style.left = `${x}px`;
+      noBtn.style.top = `${y}px`;
+    });
+
+    yesBtn.addEventListener("click", () => {
+      message.innerHTML = "Yay! I knew you’d forgive me 💞";
+      buttons.style.display = "none";
+    });
+  </script>
+</body>
+</html>
