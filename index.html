@@ -1,140 +1,150 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Olip Said Yes 💖</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Olip's Gift 🎁</title>
   <style>
     body {
       margin: 0;
       height: 100vh;
-      background: linear-gradient(135deg, #ffc0cb, #ffb6c1);
       display: flex;
-      flex-direction: column;
       justify-content: center;
       align-items: center;
-      overflow: hidden;
+      background: #0b1e5a; /* Dark blue background */
       font-family: 'Comic Sans MS', cursive, sans-serif;
+      overflow: hidden;
+      flex-direction: column;
+      text-align: center;
     }
 
-    h1 {
-      font-size: 3rem;
-      color: #ff1493;
-      text-shadow: 2px 2px 6px rgba(0,0,0,0.2);
-      margin-bottom: 40px;
-      animation: glow 1.5s infinite alternate;
+    /* --- Gift Box --- */
+    .gift {
+      width: 150px;
+      height: 150px;
+      background: #ff4d4d; /* Red gift box */
+      border-radius: 10px;
+      position: relative;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: transform 0.5s ease;
     }
 
-    @keyframes glow {
-      from { text-shadow: 0 0 10px #ff69b4; }
-      to { text-shadow: 0 0 25px #ff1493; }
+    .gift::before, .gift::after {
+      content: '';
+      position: absolute;
+      background: gold;
     }
 
-    /* --- The Cat --- */
+    .gift::before {
+      width: 20px;
+      height: 150px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .gift::after {
+      width: 150px;
+      height: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .gift.open {
+      transform: rotateX(60deg) scale(1.2);
+    }
+
+    /* --- Photo Container --- */
+    .photo-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      opacity: 0;
+      transition: opacity 1.5s ease;
+      margin-top: 20px;
+    }
+
+    .photo-container .caption {
+      font-size: 28px;
+      color: #ffd700; /* Gold text for contrast */
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .photo-container img {
+      width: 250px;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.7);
+    }
+
+    /* --- Dancing Cat --- */
     .cat {
       position: relative;
-      width: 120px;
-      height: 100px;
-      background: #333;
+      width: 80px;
+      height: 60px;
+      background: #ffd700; /* Gold cat to stand out */
       border-radius: 50% 50% 30% 30%;
+      margin-top: 20px;
       animation: dance 1s infinite ease-in-out alternate;
     }
 
-    .ear {
+    .cat::before, .cat::after {
+      content: '';
       position: absolute;
+      background: #ffd700;
+    }
+
+    .cat::before {
       width: 0;
       height: 0;
       border-style: solid;
-      top: -20px;
-    }
-
-    .ear.left {
-      left: 20px;
-      border-width: 0 15px 20px 15px;
-      border-color: transparent transparent #333 transparent;
-    }
-
-    .ear.right {
-      right: 20px;
-      border-width: 0 15px 20px 15px;
-      border-color: transparent transparent #333 transparent;
-    }
-
-    .eye {
+      border-width: 0 10px 15px 10px;
+      border-color: transparent transparent #ffd700 transparent;
       position: absolute;
-      top: 35px;
-      width: 10px;
-      height: 10px;
-      background: white;
-      border-radius: 50%;
-      animation: blink 3s infinite;
+      top: -15px;
+      left: 10px;
     }
 
-    .eye::after {
-      content: '';
+    .cat::after {
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 0 10px 15px 10px;
+      border-color: transparent transparent #ffd700 transparent;
       position: absolute;
-      top: 3px;
-      left: 3px;
-      width: 4px;
-      height: 4px;
-      background: black;
-      border-radius: 50%;
+      top: -15px;
+      right: 10px;
     }
-
-    .eye.left { left: 35px; }
-    .eye.right { right: 35px; }
-
-    .tail {
-      position: absolute;
-      right: -25px;
-      top: 50px;
-      width: 30px;
-      height: 10px;
-      background: #333;
-      border-radius: 10px;
-      transform-origin: left center;
-      animation: wag 0.5s infinite alternate ease-in-out;
-    }
-
-    .leg {
-      position: absolute;
-      bottom: -10px;
-      width: 20px;
-      height: 30px;
-      background: #333;
-      border-radius: 10px;
-    }
-
-    .leg.left { left: 30px; }
-    .leg.right { right: 30px; }
 
     @keyframes dance {
       0% { transform: translateY(0) rotate(-5deg); }
-      100% { transform: translateY(-20px) rotate(5deg); }
-    }
-
-    @keyframes wag {
-      0% { transform: rotate(20deg); }
-      100% { transform: rotate(-20deg); }
-    }
-
-    @keyframes blink {
-      0%, 90%, 100% { height: 10px; }
-      95% { height: 1px; }
+      100% { transform: translateY(-15px) rotate(5deg); }
     }
   </style>
 </head>
 <body>
-  <h1>Olip said Yes 💖</h1>
+  <h1>open the gift babee</h1>
+  <div class="gift" id="gift"></div>
 
-  <div class="cat">
-    <div class="ear left"></div>
-    <div class="ear right"></div>
-    <div class="eye left"></div>
-    <div class="eye right"></div>
-    <div class="tail"></div>
-    <div class="leg left"></div>
-    <div class="leg right"></div>
+  <div class="photo-container" id="photoContainer">
+    <div class="caption">I am the gift 🎁</div>
+    <img src="photo.jpg" alt="My photo">
+    <div class="cat"></div>
   </div>
+
+  <script>
+    const gift = document.getElementById('gift');
+    const photoContainer = document.getElementById('photoContainer');
+
+    gift.addEventListener('click', () => {
+      gift.classList.add('open');
+      setTimeout(() => {
+        photoContainer.style.opacity = 1;
+      }, 600);
+    });
+  </script>
+
 </body>
 </html>
